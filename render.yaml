@@ -1,0 +1,19 @@
+# One-click deploy to Render (render.com): New -> Blueprint -> this repository.
+services:
+  - type: web
+    name: nedumkunnam-world
+    runtime: node
+    plan: free
+    rootDir: server
+    buildCommand: npm ci
+    startCommand: node server.js
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: LIVEKIT_URL
+        sync: false
+      - key: LIVEKIT_API_KEY
+        sync: false
+      - key: LIVEKIT_API_SECRET
+        sync: false
